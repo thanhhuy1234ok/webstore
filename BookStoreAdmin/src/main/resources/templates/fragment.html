@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:fragment="page_head(tittle, remove)" th:remove="${remove}">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Monsterlite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Monster admin lite design, Monster admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Monster Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>[[${tittle}]]</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/monster-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/assets/images/favicon.png}">
+    <!-- Custom CSS -->
+    <link th:href="@{/assets/plugins/chartist/dist/chartist.min.css}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.min.css}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <!--<link th:href="@{/css/mycss.css}" rel="stylesheet">-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+	<style>
+		.change-photo{
+			position: relative
+		}
+		.photo{
+			display: block
+		}
+		.camera{
+			bottom: 5%;
+			right: 15%;
+		}
+		.camera:hover{
+			cursor: pointer;
+			opacity: 50%;
+		}
+		.thumbnail{
+			height: 100px;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div th:fragment="top-area">
+		<nav class="navbar top-navbar navbar-expand-md navbar-dark">
+			<div class="navbar-header" data-logobg="skin6">
+	            <!-- ============================================================== -->
+	            <!-- Logo -->
+	            <!-- ============================================================== -->
+	            <a class="navbar-brand" href="index.html">
+	                <!-- Logo icon -->
+	                <b class="logo-icon">
+	                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+	                    <!-- Dark Logo icon -->
+	                    <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+	
+	                </b>
+	                <!--End Logo icon -->
+	                <!-- Logo text -->
+	                <span class="logo-text">
+	                    <!-- dark Logo text -->
+	                    <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+	
+	                </span>
+	            </a>
+	            <!-- ============================================================== -->
+	            <!-- End Logo -->
+	            <!-- ============================================================== -->
+	            <!-- ============================================================== -->
+	            <!-- toggle and nav items -->
+	            <!-- ============================================================== -->
+	            <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+	                href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+	        </div>
+	        <!-- ============================================================== -->
+	        <!-- End Logo -->
+	        <!-- ============================================================== -->
+	        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+	            
+	            <!-- ============================================================== -->
+	            <!-- toggle and nav items -->
+	            <!-- ============================================================== -->
+	            <ul class="navbar-nav me-auto mt-md-0 ">
+	                <!-- ============================================================== -->
+	                <!-- Search -->
+	                <!-- ============================================================== -->
+	
+	                <li class="nav-item hidden-sm-down">
+	                
+	                </li>
+	            </ul>
+	
+	            <!-- ============================================================== -->
+	            <!-- Right side toggle and nav items -->
+	            <!-- ============================================================== -->
+	            <ul class="navbar-nav  mt-md-0 col-sm-1">
+	                <!-- ============================================================== -->
+	                <!-- User profile and search -->
+	                <!-- ============================================================== -->
+	                <li class="nav-item dropdown sm-down" sec:authorize="isAuthenticated()">
+	                    <a sec:authentication="principal.fullName" class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+	                    <span class="me-5"></span>
+	                    <ul class="me-3 dropdown-menu hidden" aria-labelledby="navbarDropdown" style="padding-top: 5px; margin-right: 5px;">
+	                    	<li class="sidebar-item" sec:authorize="isAuthenticated()">
+	                    		<a class="sidebar-link waves-effect waves-dark sidebar-link" href="/confirm_old_password" style="color: slategray; bottom: 3px;">
+	                    			<i class="me-2"></i>
+	                    			<i class="me-1 fas fa-exchange-alt" aria-hidden="true"></i><span class="hide-menu">Change Password</span>
+	                    		</a>
+	                    	</li>
+	                    	<hr style="height: 1px; margin: 0rem;"/>
+	                    	<li class="sidebar-item" sec:authorize="isAuthenticated()">
+	                    		<a class="sidebar-link waves-effect waves-dark sidebar-link" onclick="document.getElementById('formlogout').submit()" style="color: slategray; top: 3px">
+	                    			<i class="me-2"></i>
+	                    			<i class="me-1 fas fa-sign-out-alt" aria-hidden="true"></i><span class="hide-menu">Logout</span>
+	                    		</a>
+	                    		<form id="formlogout" th:action="@{/logout}" method="POST"></form>
+	                    	</li>
+	                    </ul>
+	                </li>
+	            </ul>
+	        </div>
+		</nav>
+	</div>
+	<div th:fragment="left-sidebar">
+		<!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <!-- User Profile-->
+                    <!--<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="/dashboard" aria-expanded="false"><i class="me-3 far fa-clock fa-fw"
+                                aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a></li>-->
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="/profile" aria-expanded="false">
+                            <i class="me-3 fas fa-address-card" aria-hidden="true"></i><span
+                                class="hide-menu">Profile</span></a>
+                    </li>
+                    <li sec:authorize="hasAuthority('ADMIN')" class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="/user" aria-expanded="false"><i class="me-3 fas fa-users"
+                                aria-hidden="true"></i><span class="hide-menu">Users</span></a></li>
+                    <li sec:authorize="hasAnyAuthority('ADMIN','PRODUCT')" class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="/product/1" aria-expanded="false"><i class="me-3 fas fa-book"
+                                aria-hidden="true"></i><span class="hide-menu">Products</span></a></li>
+                    <li sec:authorize="hasAnyAuthority('ADMIN','SALE')" class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="/customer/1" aria-expanded="false"><i class="me-3 fas fa-users"
+                                aria-hidden="true"></i><span class="hide-menu">Customers</span></a></li>
+                    <li sec:authorize="hasAnyAuthority('ADMIN','SALE','SHIPPER')" class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="/invoice/1" aria-expanded="false"><i class="me-3 fas fa-bookmark"
+                                aria-hidden="true"></i><span class="hide-menu">Invoices</span></a></li>
+                    <li sec:authorize="hasAuthority('ADMIN')" class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="/role" aria-expanded="false"><i class="me-3 fas fa-cog"
+                                aria-hidden="true"></i><span class="hide-menu">Roles</span></a></li>
+                    <li sec:authorize="hasAnyAuthority('ADMIN','PRODUCT')" class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="/category" aria-expanded="false"><i class="me-3 fas fa-th-large"
+                                aria-hidden="true"></i><span class="hide-menu">Category</span></a></li>
+                    <!--<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="icon-fontawesome.html" aria-expanded="false"><i class="me-3 fa fa-font"
+                                aria-hidden="true"></i><span class="hide-menu">Icon</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="map-google.html" aria-expanded="false"><i class="me-3 fa fa-globe"
+                                aria-hidden="true"></i><span class="hide-menu">Google Map</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="blank.html" aria-expanded="false"><i class="me-3 fa fa-columns"
+                                aria-hidden="true"></i><span class="hide-menu">Blank</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="404.html" aria-expanded="false"><i class="me-3 fa fa-info-circle"
+                                aria-hidden="true"></i><span class="hide-menu">Error 404</span></a></li>
+                    <li class="text-center p-20 upgrade-btn">
+                        <a href="https://www.wrappixel.com/templates/monsteradmin/"
+                            class="btn btn-danger text-white mt-4" target="_blank">Upgrade to Pro</a>
+                    </li>-->
+                </ul>
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+	</div>
+	<div th:fragment="top-table-customer">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="d-md-flex">
+					<div class="col-sm-9 ms-auto">
+						<h4 class="card-title">Customer List</h4>
+						<!--<h7 style="color: red;">Add class <code>.table</code></h7>-->
+					</div>
+					<div class="col-sm-3 d-flex flex-row-reverse">
+						<ul class="navbar-nav me-auto mt-md-0 ">
+				            <!-- ============================================================== -->
+				            <!-- Search -->
+				            <!-- ============================================================== -->
+				
+				            <li class="nav-item hidden-sm-down">
+				                <form class="app-search" th:action="@{/search_customer}" method="GET" id="searchCustomerForm">
+				                    <input type="text" name="email" class="form-control" placeholder="Search for email..."> 
+				                    <a class="srh-btn" onclick="document.getElementById('searchCustomerForm').submit()"><i class="ti-search"></i></a>
+				                </form>
+				            </li>
+				        </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:fragment="top-table-user">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="d-md-flex">
+					<div class="col-sm-9 ms-auto">
+						<h4 class="card-title">User List</h4>
+						<!--<h7 style="color: red;">Add class <code>.table</code></h7>-->
+					</div>
+					<div class="col-sm-3">
+						<ul class="navbar-nav me-auto mt-md-0 ">
+				            <!-- ============================================================== -->
+				            <!-- Search -->
+				            <!-- ============================================================== -->
+				
+				            <li class="nav-item hidden-sm-down">
+				                <form class="app-search" th:action="@{/search_user}" method="GET" id="searchUserForm">
+				                    <input type="text" name="username" class="form-control" placeholder="Search for username..."> 
+				                    <a class="srh-btn" onclick="document.getElementById('searchUserForm').submit()"><i class="ti-search"></i></a>
+				                </form>
+				            </li>
+				        </ul>
+					</div>
+		 		</div>
+			</div>
+		</div>
+	</div>
+	<div th:fragment="top-table-invoice">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="d-md-flex">
+					<div class="col-sm-9 ms-auto">
+						<h4 class="card-title">Invoice List</h4>
+						<!--<h7 style="color: red;">Add class <code>.table</code></h7>-->
+					</div>
+					<div class="col-sm-3">
+						<ul class="navbar-nav me-auto mt-md-0 ">
+				            <!-- ============================================================== -->
+				            <!-- Search -->
+				            <!-- ============================================================== -->
+				
+				            <li class="nav-item hidden-sm-down">
+				                <form class="app-search" th:action="@{/search_invoice}" method="GET" id="searchInvoiceForm">
+				                    <input type="text" name="code" class="form-control" placeholder="Search for code..."> 
+				                    <a class="srh-btn" onclick="document.getElementById('searchInvoiceForm').submit()"><i class="ti-search"></i></a>
+				                </form>
+				            </li>
+				        </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:fragment="top-table-role">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="d-md-flex">
+					<div class="col-sm-9 ms-auto">
+						<h4 class="card-title">Role List</h4>
+						<!--<h7 style="color: red;">Add class <code>.table</code></h7>-->
+					</div>
+					<div class="col-sm-3">
+						<ul class="navbar-nav me-auto mt-md-0 ">
+				            <!-- ============================================================== -->
+				            <!-- Search -->
+				            <!-- ============================================================== -->
+				
+				            <li class="nav-item hidden-sm-down">
+				                <form class="app-search" th:action="@{/search_role}" method="GET" id="searchRoleForm">
+				                    <input type="text" name="name" class="form-control" placeholder="Search for name..."> 
+				                    <a class="srh-btn" onclick="document.getElementById('searchRoleForm').submit()"><i class="ti-search"></i></a>
+				                </form>
+				            </li>
+				        </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:fragment="top-table-category">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="d-md-flex">
+					<div class="col-sm-9 ms-auto">
+						<h4 class="card-title">Category List</h4>
+						<!--<h7 style="color: red;">Add class <code>.table</code></h7>-->
+					</div>
+					<div class="col-sm-3">
+						<ul class="navbar-nav me-auto mt-md-0 ">
+				            <!-- ============================================================== -->
+				            <!-- Search -->
+				            <!-- ============================================================== -->
+				
+				            <li class="nav-item hidden-sm-down">
+				                <form class="app-search" th:action="@{/search_category}" method="GET" id="searchCategoryForm">
+				                    <input type="text" name="name" class="form-control" placeholder="Search for name..."> 
+				                    <a class="srh-btn" onclick="document.getElementById('searchCategoryForm').submit()"><i class="ti-search"></i></a>
+				                </form>
+				            </li>
+				        </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

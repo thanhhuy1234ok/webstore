@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragment :: page_head('Sagi Bookstore','none')"></head>
+<style>
+	tr:hover{background-color:#f5f5f5;}
+</style>
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin6">
+            <div th:replace="fragment :: top-area"></div>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <div th:replace="fragment :: left-sidebar"></div>
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="page-title mb-0 p-0"></h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-4 align-self-center">
+                        <div class="text-end upgrade-btn">
+                            <a th:href="@{/add_new_product}"
+                                class="btn btn-success d-none d-md-inline-block text-white">Add New Product</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+	                            	<form class="app-search" th:action="@{/search_product}" method="GET" id="searchProductForm">
+	                            		<div class="row">
+			                            	<div class="col-sm-12">
+												<div class="d-md-flex">
+													<div class="col-sm-7 ms-auto">
+														<h4 class="card-title">Product List</h4>
+														<!--<h7 style="color: red;">Add class <code>.table</code></h7>-->
+													</div>
+													<div class="col-sm-3 ms-auto">
+														<ul class="navbar-nav me-auto mt-md-0 ">
+												            <!-- ============================================================== -->
+												            <!-- Search -->
+												            <!-- ============================================================== -->
+												
+												            <li class="nav-item hidden-sm-down">
+												                <!--<form class="app-search" th:action="@{/search_product}" method="GET" id="searchProductForm">-->
+												                    <input type="text" name="name" class="form-control" placeholder="Search for..."> 
+												                    <!--<a class="srh-btn" onclick="document.getElementById('searchProductForm').submit()"><i class="ti-search"></i></a>-->
+												                <!--</form>-->
+												            </li>
+												        </ul>
+	                                				</div>
+	                                				<div class="col-sm-2">
+						                					<select class="form-select shadow-none col-md-2 ml-auto" th:name="selectedCategory">
+						                						<!--<option th:value="All">All</option>-->
+											                    <th:block th:each="category : ${listCategories}">
+											                    	<option th:value="${category.name}" th:selected="${category.name} == ${selectedCategory.name}">[[${category.name}]]</option>
+											                    </th:block>
+											                </select>
+										            </div>
+												</div>
+			                            	</div>
+	                            		</div>
+	                            		<div class="row">
+	                            			<div class="col-sm-12">
+												<div class="d-md-flex flex-row-reverse">
+										            <div class="form-group">
+					                                        <div class="col-sm-2 d-flex">
+					                                            <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">Search</button>
+					                                        </div>
+				                                    </div>
+	                                			</div>
+	                            			</div>
+	                            		</div>
+							         </form>
+                            	</div>
+                                <div  class="table-responsive">
+          
+                                    <table class="table user-table no-wrap">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-top-0">#</th>
+                                                <th class="border-top-0 text-center">Name</th>
+                                                <th class="border-top-0 text-center">Code</th>
+                                                <th class="border-top-0 text-center">Description</th>
+                                                <th class="border-top-0 text-center">Category</th>
+                                                <th class="border-top-0 text-center">Quantity</th>
+                                                <th class="border-top-0 text-center">Price</th>
+                                                <th class="border-top-0 text-center">Sale Price</th>
+                                                <th class="border-top-0 text-center">Edit</th>
+                                                <th class="border-top-0 text-center">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="product : ${listProducts}">
+                                                <td class="align-middle align-self-center text-center" th:text="${product.id}"></td>
+                                                <td class="align-middle align-self-center text-center" th:text="${product.name}"></td>
+                                                <td class="align-middle align-self-center text-center" th:text="${product.code}"></td>
+                                                <td class="align-middle align-self-center text-center" th:text="${product.description}"></td>
+                                                <td class="align-middle align-self-center text-center" th:text="${product.category.name}"></td>
+                                                <td class="align-middle align-self-center text-center" th:text="${product.quantity}"></td>
+                                                <td class="align-middle align-self-center text-center" th:text="${product.price}"></td>
+                                                <td class="align-middle align-self-center text-center" th:text="${product.salePrice}"></td>
+                                                <td class="align-middle align-self-center text-center">
+                                                	<div class="align-self-center">
+								                        <div class="upgrade-btn">
+								                            <a th:href="@{/edit_product/{code}(code=${product.code})}"
+								                                class="btn btn-success d-none d-md-inline-block text-white">Edit</a>
+								                        </div>
+								                    </div>
+                                                </td>
+                                                <td class="align-middle align-self-center text-center">
+                                                	<div class="align-self-center">
+								                        <div class="upgrade-btn">
+								                            <a th:href="@{/delete_product/{id}(id=${product.id})}"
+								                                class="btn btn-success d-none d-md-inline-block text-white">Delete</a>
+								                        </div>
+								                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                © 2021 Monster Admin by <a href="https://www.wrappixel.com/">wrappixel.com</a>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script th:src="@{assets/plugins/jquery/dist/jquery.min.js}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script th:src="@{assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{js/app-style-switcher.js}"></script>
+    <!--Wave Effects -->
+    <script th:src="@{js/waves.js}"></script>
+    <!--Menu sidebar -->
+    <script th:src="@{js/sidebarmenu.js}"></script>
+    <!--Custom JavaScript -->
+    <script th:src="@{js/custom.js}"></script>
+</body>
+
+</html>

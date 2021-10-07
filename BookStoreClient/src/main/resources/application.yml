@@ -1,0 +1,41 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    password: huy123456789
+    url: jdbc:mysql://localhost:3306/bookstore
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        enable_lazy_load_no_trans: true
+        format_sql: true
+    show-sql: false
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 538459783874286
+            client-secret: 9a6eaf0695320a2e05b5ba9d61e75bac
+          google:
+            client-id: 502746126452-vsaer38asm1lhst33d2bsn1sg72c1kfk.apps.googleusercontent.com
+            client-secret: gKra8Wji3cCSQdMolhQOULbU
+            scope:
+            - email
+            - profile            
+  mail:
+    host: smtp.gmail.com
+    password: qhvolqmwczkabvvg
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: longnguyen25089@gmail.com
+            

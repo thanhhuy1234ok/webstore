@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragment :: page_head('Sagi Bookstore','none')"></head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin6">
+            <div th:replace="fragment :: top-area"></div>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <div th:replace="fragment :: left-sidebar"></div>
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="page-title mb-0 p-0">Profile</h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-4 align-self-center">
+                        <div class="text-end upgrade-btn">
+                            <a href="https://www.wrappixel.com/templates/monsteradmin/"
+                                class="btn btn-success d-none d-md-inline-block text-white" target="_blank">Upgrade to
+                                Pro</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <form th:action="@{/edit_address}" th:method="post" th:object=${address} class="form-horizontal form-material mx-2">
+	                <div class="row">
+	                    <!-- Column -->
+	                    <!-- Column -->
+	                    <!-- Column -->
+	                    <div class="col-lg-8 col-xlg-9 col-md-7">
+	                        <div class="card">
+	                            <div class="card-body">
+	                            	<div class="form-group">
+	                            		<input type="hidden" th:field="*{id}">
+	                            	</div>
+	                            	<div class="form-group">
+	                            		<input type="hidden" th:field="*{customer}">
+	                            	</div>
+                                	<div class="form-group">
+                                        <label class="col-md-12 mb-0">Street</label>
+                                        <div class="col-md-12">
+                                            <input type="text" th:field="*{street}"
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Ward</label>
+                                        <div class="col-md-12">
+                                            <input type="text" th:field="*{ward}"
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">District</label>
+                                        <div class="col-md-12">
+                                            <input type="text" th:field="*{district}"
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>      
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">City</label>
+                                        <div class="col-md-12">
+                                            <input type="text" th:field="*{city}"
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>                                
+                                    <div class="form-group">
+                                        <div class="col-sm-12 d-flex">
+                                            <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">Change</button>
+                                        </div>
+                                    </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <!-- Column -->
+	                </div>
+                </form>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                © 2021 Monster Admin by <a href="https://www.wrappixel.com/">wrappixel.com</a>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script th:src="@{/assets/plugins/jquery/dist/jquery.min.js}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script th:src="@{/assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/app-style-switcher.js}"></script>
+    <!--Wave Effects -->
+    <script th:src="@{/js/waves.js}"></script>
+    <!--Menu sidebar -->
+    <script th:src="@{/js/sidebarmenu.js}"></script>
+    <!--Custom JavaScript -->
+    <script th:src="@{/js/custom.js}"></script>
+</body>
+
+</html>

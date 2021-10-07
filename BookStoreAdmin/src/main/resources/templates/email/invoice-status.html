@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:remove="all">Trang Thai Don Hang</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style type="text/css">
+        	.invoiceTable{
+				width: 100%;
+				border-collapse: collapse;
+			}
+        </style>
+    </head>
+    <body>
+        <p style="font-style:bold; font-size:medium">
+            [[${invoice.customerInvoice.lastName}]] [[${invoice.customerInvoice.firstName}]] than men,
+        </p>
+        <p>
+        	Don hang #[[${invoice.code}]] cua quy khach dang duoc van chuyen. Don vi van chuyen se tien hanh giao hang cho quy khach trong thoi gian som nhat.
+        </p>
+        <br>
+        <div>
+        	<p style="color: black; text-transform: uppercase;font-weight: bold;">thong tin don hang #[[${invoice.code}]] <span>([[${confirmDate}]])</span></p> 
+        </div>
+        <hr>
+        <p>
+        	Thong tin khach hang:<br>
+        	[[${invoice.customerInvoice.lastName}]] [[${invoice.customerInvoice.firstName}]]<br>
+        	[[${invoice.customerInvoice.phoneNumber}]]
+        </p>
+        <div>
+        	<p style="color: black; text-transform: uppercase; font-weight: bold;">chi tiet don hang</p> 
+        </div>
+        <hr>
+        <table class="invoiceTable">
+        	<tr style="background-color: aqua; text-align: left;">
+        		<th>San pham</th>
+        		<th>Don gia</th>
+        		<th>So luong</th>
+        		<th style="text-align: right;">Tong tam</th>
+        	</tr>
+        	<tr th:each="detail : ${invoiceDetail}">
+        		<td>[[${detail.product.name}]]</td>
+        		<td>[[${detail.product.price}]]</td>
+        		<td>[[${detail.quantity}]]</td>
+        		<td style="text-align: right;">[[${detail.itemTotal}]]</td>
+        	</tr>
+        	
+        	<tr>
+        		<td></td>
+        		<td></td>
+        		<td><b>Tong gia tri don hang</b></td>
+        		<td style="text-align: right;"><b>[[${invoice.totalPayable}]]</b></td>
+        	</tr>
+        </table>
+        <p>
+        Cam on quy khach!
+        </p>
+    </body>
+</html>

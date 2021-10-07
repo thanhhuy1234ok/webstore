@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:remove="all">Template for HTML email (simple)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p th:text="#{greeting(${name})}">
+            Hello, [[${customer.email}]]!
+        </p>
+        <p>
+            Quý khách đăng ký email thành công <br />
+        </p>
+        <p>
+            Đăng ký email thành công vào lúc</b> on
+            <span th:text="${#dates.format(subscriptionDate)}">28-12-2012</span>
+        </p>
+        <p>Tài khoản và pass đã đăng ký</p>
+        <ul th:remove="all-but-first">
+            <li th:each="customer : ${customer}"
+                th:text="${customer.email}"></li>
+            <li th:text="${customer.password}"></li>
+        </ul>
+        <p>
+            Regards, <br />
+            &emsp; <em>The BookStrore </em>
+        </p>
+    </body>
+</html>
